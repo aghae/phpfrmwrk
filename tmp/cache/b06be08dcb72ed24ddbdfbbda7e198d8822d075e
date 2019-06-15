@@ -1,0 +1,15 @@
+<h3>
+	<?php try{ echo @self::callModifier("contextOutTag",self::callModifier("capitalize",$name,""),""); } catch(\Exception $e) { echo $e->getMessage(); } ?> ;) 
+</h3>
+
+<br>
+
+Datetime is : <?php try{ echo @self::callModifier("contextOutTag",self::callModifier("date",$mdate,"Y-m-d h:i:s a"),""); } catch(\Exception $e) { echo $e->getMessage(); } ?>
+
+
+<div style='margin-top:20;background:yellow;width:50%;border:1px solid red'>
+	phpfrmwrk has strong cache . if you changed  template  and didn't effect on result, 
+	delete cache file in tmp/cache	
+</div>
+
+	
