@@ -142,14 +142,15 @@ __Fast Light Easy PHP framework__
                 ```
                 
                 You can use regular logic operators (==, !=, >, <, >=, <=, ||, &&) or you can use the following
-                  |Operator | Equivalent |
-                  |---|---|
-                  |eq       |  ==      |
-                  |neq      |  !=      |
-                  |gt       |  >       |
-                  |lt       |  <       |
-                  |gte      |  >=      |
-                  |lte      |  <=      |
+                
+                  Operator  | Equivalent|
+                  |---------|-----------|
+                  |eq       |  ==      
+                  |neq      |  !=      
+                  |gt       |  >       
+                  |lt       |  <       
+                  |gte      |  >=      
+                  |lte      |  <=      
                               
             - Loops
                 > <ul>
