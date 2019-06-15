@@ -140,6 +140,7 @@ __Fast Light Easy PHP framework__
                         <h1>Hello guest</h1>
                     {endif}
                 ```
+                
                 You can use regular logic operators (==, !=, >, <, >=, <=, ||, &&) or you can use the following
                   |Operator | Equivalent |
                   |-|   -|
@@ -318,7 +319,7 @@ __Fast Light Easy PHP framework__
                 'MAIL_FROM'     =>'info@my.fake',
                 'MAIL_FROM_NAME'=>,'mr nobody'
             ] ;
-            $status=send::email('a.aghaee@gmail.com','salam','hello <b>World<b>');
+            $status=send::email('you@tst.com','hi','hello <b>World<b>');
             if($status)
                 res::write('succesfully sent.');
             ```

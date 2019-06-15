@@ -2,7 +2,7 @@
 
 // error_reporting(E_ERROR);
 
-header('X-Powered-By: MyServer');
+header('X-Powered-By: nobody');
 ini_set('expose_php',false);
 
 define('CTRL_PATH'		,__DIR__.'/app/ctrl');
@@ -46,6 +46,6 @@ define('SMTP_PASS'		,'secretPasss');
 define('SMTP_PORT'		, 587);
 define('SMTP_SECURE'	,'tls'); #tls or ssl
 define('MAIL_FROM'		,'info@my.co');
-define('MAIL_FROM_NAME'	,'shivaya website');
+define('MAIL_FROM_NAME'	,'mr. nobody');
 
 
