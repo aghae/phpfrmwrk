@@ -36,13 +36,13 @@ __Fast Light Easy PHP framework__
         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;\name\space\path\test_model::test_method(params,...)
          ```php
          Example:  model\user_model.php 
-                class user_model {
-                    function exists($user_id=1){
-                        $result = db::get()->select('name from user where id=:id',['id'=>$user_id]);
-                        return $result?true:false
-                    }
-                
+            class user_model {
+                function exists($user_id=1){
+                    $result = db::get()->select('name from user where id=:id',['id'=>$user_id]);
+                    return $result?true:false
                 }
+            
+            }
         ```
 - **Controllers :**
     - Filename trail with _controller
@@ -153,12 +153,14 @@ __Fast Light Easy PHP framework__
                   |lte      |  <=      
                               
             - Loops
-                > <ul>
+                ```html
+                 <ul>
                     {loop $i,$user in $users}
-                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <li>{i} - {$user.name.capitalize()}</h1>
+                        <li>{i} - {$user.name.capitalize()}</h1>
                     {endloop}
-                    </ul>
-                    
+                 </ul>
+                ```
+
          - __Template inheritance__
          ``` supports single template inheritance. The idea behind this is to keep things nice and simple. Multiple inheritance can lead to complicated views difficult to maintain```
           template inheritance is based on blocks. Suppose we have the following base template:
