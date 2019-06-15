@@ -1,16 +1,18 @@
-Fast Light Easy PHP framework
+__Fast Light Easy PHP framework__
 
 - **Structure**:
-    > app
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- model
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- view
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- controller
-    public
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- index.php ```bootstrap ```
-    inc     ``` Libraries & third parties ```
-    tmp
-    config.php      ``` configuration file ```
-    database.php    ``` database config```
+    ```
+    app
+        - model
+        - view
+        - controller
+    public                      // css,js & static files
+        - index.php             // bootstrap
+   inc                         // Libraries & third parties 
+   tmp
+   config.php                  // configuration file
+   database.php                //database config
+    ```
 
 
 - **Start :**
@@ -32,7 +34,7 @@ Fast Light Easy PHP framework
     - models can called statically anywhere 
     - It can called namespacely if decaled on related filename liike this :
         &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;\name\space\path\test_model::test_method(params,...)
-         ```
+         ```php
          Example:  model\user_model.php 
                 class user_model {
                     function exists($user_id=1){
