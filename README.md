@@ -76,13 +76,17 @@ __Fast Light Easy PHP framework__
     - use simple res::render(tpl,data)
     - tpl as html file with simple using variable passed like this:
         - In `test.html` for example we have :
-            <html>
-            <body>
-            &nbsp;&nbsp;<span>{$var}</span>
-            </body>
-            </html>
+            ```
+                <html>
+                <body>
+                    <span>{$var}</span>
+                </body>
+                </html>
+            ```
         - In `controller`  $var been passed like this:
-            &nbsp;&nbsp;&nbsp;&nbsp;res::render('test.html',['var'=>'value'])
+            ```php
+                res::render('test.html',['var'=>'value'])
+            ```    
         - __Modifires__ 
             > $variable.modifier1().modifier2().modifier3()}
 
@@ -126,25 +130,26 @@ __Fast Light Easy PHP framework__
              {include http://mypage.com/static.html} ```fetch externalpage```
              
         - __Control structures__
-            - If / else
-                > {if $user.role eq "admin"}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>Hello admin</h1>
-                  {elseif $user.role.upper() eq "MEMBER" }
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>Hello member</h1>
-                  {else}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1>Hello guest</h1>
-                  {endif}
-                  
-              You can use regular logic operators (==, !=, >, <, >=, <=, ||, &&) or you can use the following
-              |Operator | Equivalent |
-              |---------|------------|
-              |eq       |   ==       |
-              |neq       |  !=       |
-              |gt       |   >       |
-              |lt       |   <       |
-              |gte      |   >=       |
-              |lte       |  <=       |
-              
+            -   If / else
+                ```
+                    {if $user.role eq "admin"}
+                        <h1>Hello admin</h1>
+                    {elseif $user.role.upper() eq "MEMBER" }
+                        <h1>Hello member</h1>
+                    {else}
+                        <h1>Hello guest</h1>
+                    {endif}
+                ```
+                You can use regular logic operators (==, !=, >, <, >=, <=, ||, &&) or you can use the following
+                  |Operator | Equivalent |
+                  |-|   -|
+                  |eq       |   ==       |
+                  |neq       |  !=       |
+                  |gt       |   >       |
+                  |lt       |   <       |
+                  |gte      |   >=       |
+                  |lte       |  <=       |
+                              
             - Loops
                 > <ul>
                     {loop $i,$user in $users}
@@ -239,7 +244,7 @@ __Fast Light Easy PHP framework__
 
 - **CLI command or Cronjob:**
     goto public folder and use like this:
-    _public>_ php index.php controller/method/arg1/arg2/...
+    >   _public>_ php index.php controller/method/arg1/arg2/...
 
 
 - **API Refrences :**
