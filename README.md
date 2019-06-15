@@ -143,13 +143,13 @@ __Fast Light Easy PHP framework__
                 
                 You can use regular logic operators (==, !=, >, <, >=, <=, ||, &&) or you can use the following
                   |Operator | Equivalent |
-                  |-|   -|
-                  |eq       |   ==       |
-                  |neq       |  !=       |
-                  |gt       |   >       |
-                  |lt       |   <       |
-                  |gte      |   >=       |
-                  |lte       |  <=       |
+                  |---|---|
+                  |eq       |  ==      |
+                  |neq      |  !=      |
+                  |gt       |  >       |
+                  |lt       |  <       |
+                  |gte      |  >=      |
+                  |lte      |  <=      |
                               
             - Loops
                 > <ul>
@@ -310,6 +310,7 @@ __Fast Light Easy PHP framework__
             &nbsp;&nbsp;
             ```php
             for example for send via google smtp server
+            //you can change smtp option in config.php or change some options like below
             $options=[
                 'SMTP_HOST'     =>'smtp.gmail.com',
                 'SMTP_USER'     =>'your@gmail.com',
@@ -319,7 +320,8 @@ __Fast Light Easy PHP framework__
                 'MAIL_FROM'     =>'info@my.fake',
                 'MAIL_FROM_NAME'=>,'mr nobody'
             ] ;
-            $status=send::email('you@tst.com','hi','hello <b>World<b>');
+
+            $status=send::email('you@tst.com','hi','hello <b>World<b>',$options);
             if($status)
                 res::write('succesfully sent.');
             ```
