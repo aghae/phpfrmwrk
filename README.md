@@ -1,11 +1,10 @@
-Fast & Light static class based PHP framework
-by a.aghaee@gmail.com  
+Fast Light Easy PHP framework
 
 - **Structure**:
     > app
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---model
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--view
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--controller
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- model
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- view
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- controller
     public
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- index.php ```bootstrap ```
     inc     ``` Libraries & third parties ```
@@ -14,55 +13,68 @@ by a.aghaee@gmail.com
     database.php    ``` database config```
 
 
+- **Start :**
+    - unzip & cd to unzipped folder
+    - cd to public folder & then
+    - _Development:_
+        - $ php -S localhost:8000
+
+    - _Production:_ 
+        - $ ./server.sh start localhost:8000 
+        - $ ./server.sh stop
+        - $ ./server.sh restart
+        - $ ./server.sh status
+
+
 - **Models & Libraries :** 
-	- model filename trail with _model
-	- model classname must be same as filename
-	- models can called statically anywhere 
-	- It can called namespacely if decaled on related filename liike this :
-		&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;\name\space\path\test_model::test_method(params,...)
+    - model filename trail with _model
+    - model classname must be same as filename
+    - models can called statically anywhere 
+    - It can called namespacely if decaled on related filename liike this :
+        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;\name\space\path\test_model::test_method(params,...)
          ```
          Example:  model\user_model.php 
                 class user_model {
-                	function exists($user_id=1){
-                		$result = db::get()->select('name from user where id=:id',['id'=>$user_id]);
-                		return $result?true:false
-                	}
+                    function exists($user_id=1){
+                        $result = db::get()->select('name from user where id=:id',['id'=>$user_id]);
+                        return $result?true:false
+                    }
                 
                 }
         ```
 - **Controllers :**
-	- Filename trail with _controller
-	- Classname must be same as filename
-	- It can be statically call a controller into another contoller 
-	    > for example into test2_controller.php:
-			test_controller::method(params,...)
+    - Filename trail with _controller
+    - Classname must be same as filename
+    - It can be statically call a controller into another contoller 
+        > for example into test2_controller.php:
+            test_controller::method(params,...)
 
     - Each method in controller class is as a route 
         > for example
           url  : /method/[param1][/param2]
           
-   	- Dont use any namespace in controllers
-	- __route__ :
-	    -  if you make a route in route.php . it override controller method
-	    -  route.php style:
-	        ```php
+    - Dont use any namespace in controllers
+    - __route__ :
+        -  if you make a route in route.php . it override controller method
+        -  route.php style:
+            ```php
             $routes=[
              # "METHOD PATH"=>['controller@method',['regx_arg1','regx_arg2',...]]
-            	'home/overrided  '=> ['test@override'],
-            	'test/prmtst'=> ['test@paramtest',['\d+','\d*']],
-            	'POST test/post'=> ['test@post'],
+                'home/overrided  '=> ['test@override'],
+                'test/prmtst'=> ['test@paramtest',['\d+','\d*']],
+                'POST test/post'=> ['test@post'],
             
             ];
-	        ```
+            ```
 
 
 - **Views**
     - views must be stored in app/view . you can change this path on config.php
-	- inhertiance & block based 
-	- use simple res::render(tpl,data)
-	- tpl as html file with simple using variable passed like this:
-	    - In `test.html` for example we have :
-	        <html>
+    - inhertiance & block based 
+    - use simple res::render(tpl,data)
+    - tpl as html file with simple using variable passed like this:
+        - In `test.html` for example we have :
+            <html>
             <body>
             &nbsp;&nbsp;<span>{$var}</span>
             </body>
@@ -77,35 +89,35 @@ by a.aghaee@gmail.com
             |Name|Description
             |-|-
             |upper()|Uppercase
-            |lower()|	Lowercase
-            |capitalize()|	Capitalize words (ucwords)
-            |abs()|	Absolute value
-            |truncate(len)|	Truncate and add "..." if string is larger than "len"
-            |count()|	Alias to count()
-            |length()|	alias to count()
-            |date(format)|	Format date like date(format)
-            |nl2br()|	Alias to nl2br
-            |stripSlashes()|	Alias to stripSlashes()
-            |sum(value)|	Sums value to the current variable
-            |substract(value)|	Substracts value to the current variable
-            |multiply(value)|	Multiply values
-            |divide(value)|	Divide values
-            |addSlashes()|	Alias of addSlashes()
-            |encodeTags()|	Encode the htmls tags inside the variable
-            |decodeTags()|	Decode the tags inside the variable
-            |stripTags()|	Alias of strip_tags()
-            |urldecode()|	Alias of urldecode()
-            |trim()|	Alias of trim()
-            |sha1()|	Returns the sha1() of the variable
-            |numberFormat(decimals)	Alias of number_format()
-            |lastIndex()|	Returns the last array's index of the variable
-            |lastValue()|	Returns the array's last element
-            |jsonEncode()|	Alias of json_encode()
-            |replace(find,replace)|	Alias of str_replace()
-            |default(value)|	In case variable is empty, assign it value
-            |ifEmpty(value [,else_value])|	If variable is empty assign it value, else if else_value is set, set it to else_value
-            |if(value, then_value [,else_value [,comparisson_operator]] )	|Conditionally set the variable's value. All arguments can be variables
-            |preventTagEncode()|	If ESCAPE_TAGS_IN_VARS = true, this prevents the variable's value to be encoded
+            |lower()|   Lowercase
+            |capitalize()|  Capitalize words (ucwords)
+            |abs()| Absolute value
+            |truncate(len)| Truncate and add "..." if string is larger than "len"
+            |count()|   Alias to count()
+            |length()|  alias to count()
+            |date(format)|  Format date like date(format)
+            |nl2br()|   Alias to nl2br
+            |stripSlashes()|    Alias to stripSlashes()
+            |sum(value)|    Sums value to the current variable
+            |substract(value)|  Substracts value to the current variable
+            |multiply(value)|   Multiply values
+            |divide(value)| Divide values
+            |addSlashes()|  Alias of addSlashes()
+            |encodeTags()|  Encode the htmls tags inside the variable
+            |decodeTags()|  Decode the tags inside the variable
+            |stripTags()|   Alias of strip_tags()
+            |urldecode()|   Alias of urldecode()
+            |trim()|    Alias of trim()
+            |sha1()|    Returns the sha1() of the variable
+            |numberFormat(decimals) Alias of number_format()
+            |lastIndex()|   Returns the last array's index of the variable
+            |lastValue()|   Returns the array's last element
+            |jsonEncode()|  Alias of json_encode()
+            |replace(find,replace)| Alias of str_replace()
+            |default(value)|    In case variable is empty, assign it value
+            |ifEmpty(value [,else_value])|  If variable is empty assign it value, else if else_value is set, set it to else_value
+            |if(value, then_value [,else_value [,comparisson_operator]] )   |Conditionally set the variable's value. All arguments can be variables
+            |preventTagEncode()|    If ESCAPE_TAGS_IN_VARS = true, this prevents the variable's value to be encoded
             
         - __Include__ a template inside another template
             >{include footer.html}
@@ -122,14 +134,14 @@ by a.aghaee@gmail.com
                   {endif}
                   
               You can use regular logic operators (==, !=, >, <, >=, <=, ||, &&) or you can use the following
-              |Operator	| Equivalent |
+              |Operator | Equivalent |
               |---------|------------|
-              |eq       |	==       |
-              |neq       |	!=       |
-              |gt       |	>       |
-              |lt       |	<       |
-              |gte      |	>=       |
-              |lte       |	<=       |
+              |eq       |   ==       |
+              |neq       |  !=       |
+              |gt       |   >       |
+              |lt       |   <       |
+              |gte      |   >=       |
+              |lte       |  <=       |
               
             - Loops
                 > <ul>
@@ -191,15 +203,15 @@ by a.aghaee@gmail.com
             ```
                   
 
-	
-	
+    
+    
 
 
 
 - **pdo Wrapper**
-	- access via db::get([defined_name in database.php])
-	- in the following use simple methods:
-		select , insert, update, ....
+    - access via db::get([defined_name in database.php])
+    - in the following use simple methods:
+        select , insert, update, ....
     ```php
         
         $result = db::get()->select("name from tbl limit 10"); 
@@ -210,33 +222,24 @@ by a.aghaee@gmail.com
         
         /* select query from read_db group */
         $result = db::get(read_db)->select("name from tbl limit 10"); 
-		res::dump($result);
-		
-		//use default_db group
-		db::get()->insert('tbl',['name'=>'aghae'])  
-		
-		//use write_db group
-		db::get(write_db)->insert('tbl',['id'=>'123','name'=>'aghae'])
-		
-		db::get()->update('tbl',['email'=>'info@tst.com'],['id'=>'123'])
-		....
-		//for db library method goes to API refrences
+        res::dump($result);
+        
+        //use default_db group
+        db::get()->insert('tbl',['name'=>'aghae'])  
+        
+        //use write_db group
+        db::get(write_db)->insert('tbl',['id'=>'123','name'=>'aghae'])
+        
+        db::get()->update('tbl',['email'=>'info@tst.com'],['id'=>'123'])
+        ....
+        //for db library method goes to API refrences
     ```
 
 - **CLI command or Cronjob:**
-	goto public folder and use like this:
-	_public>_ php index.php controller/method/arg1/arg2/...
+    goto public folder and use like this:
+    _public>_ php index.php controller/method/arg1/arg2/...
 
-- **Start with command:**
-     Goto public forlder & then:
-    - _Development:_
-        - $ php -S localhost:8000
 
-	- _Production:_ 
-	    - $ ./server.sh start localhost:8000 
-	    - $ ./server.sh stop
-	    - $ ./server.sh restart
-	    - $ ./server.sh status
 - **API Refrences :**
     ```php
         All methods must be called statically like :
@@ -285,14 +288,14 @@ by a.aghaee@gmail.com
             ```php
             $urlPattern like this : '/test/pager/(:num)';
             $totalItems   = 1000;
-    		$itemsPerPage = 50;
-    		$currentPage  = $num;
-    		$urlPattern   = '/test/pager/(:num)';
+            $itemsPerPage = 50;
+            $currentPage  = $num;
+            $urlPattern   = '/test/pager/(:num)';
     
-    		$paginator = pagin::make($totalItems, $itemsPerPage, $currentPage, $urlPattern);
-    		$paginator->setMaxPagesToShow(5);
-    		// res::json( $paginator->getPages());
-    		echo  $paginator->toHtml();
+            $paginator = pagin::make($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+            $paginator->setMaxPagesToShow(5);
+            // res::json( $paginator->getPages());
+            echo  $paginator->toHtml();
             ```
     - **send**
         - email($to, $subject,$message,$options=[])
@@ -300,26 +303,26 @@ by a.aghaee@gmail.com
             ```php
             for example for send via google smtp server
             $options=[
-            	'SMTP_HOST'		=>'smtp.gmail.com',
-            	'SMTP_USER'		=>'your@gmail.com',
-            	'SMTP_PASS'		=>'you gmail account pass',
-            	'SMTP_PORT'		=> 587,
-            	'SMTP_SECURE'	=>'tls', #tls or ssl
-            	'MAIL_FROM'		=>'info@my.fake',
-            	'MAIL_FROM_NAME'=>,'mr nobody'
+                'SMTP_HOST'     =>'smtp.gmail.com',
+                'SMTP_USER'     =>'your@gmail.com',
+                'SMTP_PASS'     =>'you gmail account pass',
+                'SMTP_PORT'     => 587,
+                'SMTP_SECURE'   =>'tls', #tls or ssl
+                'MAIL_FROM'     =>'info@my.fake',
+                'MAIL_FROM_NAME'=>,'mr nobody'
             ] ;
             $status=send::email('a.aghaee@gmail.com','salam','hello <b>World<b>');
-       		if($status)
-       			res::write('succesfully sent.');
+            if($status)
+                res::write('succesfully sent.');
             ```
     - **crypt**
         - encrypt($string,$secret_key = CRYPT_KEY,$secret_iv = CRYPT_IV)
        - decrypt($string)
             ```php
-                define('CRYPT_KEY'	, '3Qr$@lTk!!');
-                define('CRYPT_IV'	, '!5ssmKghQii');
+                define('CRYPT_KEY'  , '3Qr$@lTk!!');
+                define('CRYPT_IV'   , '!5ssmKghQii');
                 $crytpted =  crypt::encrypt('hello world') ;
-       	        $decrtpted = crypt::decrypt($crytpted) ;
+                $decrtpted = crypt::decrypt($crytpted) ;
                         
             ```
         
@@ -328,10 +331,10 @@ by a.aghaee@gmail.com
         - buffer($name)
             ```php
             if (cache::not_buffered('cachekey',60)){
-    		 $result = db::get()->select("name from tbl limit 10");
-        		 res::dump($result);
+             $result = db::get()->select("name from tbl limit 10");
+                 res::dump($result);
              cache::buffer('cachekey');
-        	}
+            }
             ```
     - **util**:
         - slugify($string, $separator = '-', $css_mode = false)
