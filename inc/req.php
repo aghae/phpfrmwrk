@@ -2,20 +2,24 @@
 
 class req{
 
+	// htmlspecialchars($_GET["name"])
+	function get($key='')
+	{
+		$ret=$_GET ;
+		foreach($ret as $k=>$val) $ret[$k]=htmlspecialchars($val);
+		return $key?isset($ret[$key])?$ret[$key]:null:$ret;
+	}
+
+	function post($key='')
+	{
+		$ret=$_POST ;
+		foreach($ret as $k=>$val) $ret[$k]=htmlspecialchars($val);
+		return $key?isset($ret[$key])?$ret[$key]:null:$ret;
+	}
+
 	function raw_post(){
 		$raw_data=file_get_contents('php://input');
 		return (array)json_decode($raw_data);
-	}
-	
-	function post($key='')
-	{
-		$ret=$_POST;
-		if($key!=''){
-		   if(isset($ret[$key]))
-		    return $ret[$key];
-		}
-		else
-			return $ret;
 	}
 
 	function is_ajax(){

@@ -276,30 +276,31 @@ Goto public folder and use like this:
     sess::id()
     ....
 ```
-##### req
-- raw_post()
+#### req
+- get($key='')
 - post($key='')
+- raw_post()
 - is_ajax()
 - ip()
 
-##### res
+#### res
 -  dump($data)
 -  write($formated_str,$params=[])
 -  json($data)
 -  render($tpl,$data,$layout=null)
 
-##### sess
+#### sess
 - id()
 - set($name,$value)
 - get($name='')
 - unset($name)
 
-##### cok
+#### cok
 - set($name,$value,$options=[])
 - get($name='')
 - unset($name,$options=[])
 
-##### db
+#### db
 - get($group = false) ```group name that introduced in database.php```
 - raw($sql)
 - select($sql, $named_params = array())
@@ -308,16 +309,16 @@ Goto public folder and use like this:
 - delete($table, $where, $limit = 1)
 - truncate($table)
             
-##### http
+#### http
 - curl($url, $curl_options=[])
 
-##### img
+#### img
 - resize($src,$dest,$width,$height=null,$to='file') 
     ```$to: file or screen```
 - capcha($sess_name='capcha')   
     ``` you can get capcha text with=> sess::get('capcha') ```
 
-##### pagin
+#### pagin
 - make($total, $perPage, $current, $urlPattern) 
     ```php
     $urlPattern like this : '/test/pager/(:num)';
@@ -333,7 +334,7 @@ Goto public folder and use like this:
     // $paginator->toHtml();  # render html
     ```
 
-##### send
+#### send
 - email($to, $subject,$message,$options=[])
    
     ```php
@@ -356,7 +357,7 @@ Goto public folder and use like this:
     else
          res::write('somthing is wrong');
     ```
-##### crypt
+#### crypt
 - encrypt($string,$secret_key = CRYPT_KEY,$secret_iv = CRYPT_IV)
 - decrypt($string)
     ```php
@@ -365,7 +366,7 @@ Goto public folder and use like this:
     $decrtpted = crypt::decrypt($crytpted) ;
     ```
         
-##### cache
+#### cache
 - not_buffered($name,$cache_time)
 - buffer($name)
     ```php
@@ -376,7 +377,7 @@ Goto public folder and use like this:
          cache::buffer('cachekey');
     }
     ```
-##### util
+#### util
 - slugify($string, $separator = '-', $css_mode = false)
 - get_current_url()
 - linkify($text)      `Turns all of the links in a string into HTML links`

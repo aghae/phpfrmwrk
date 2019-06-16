@@ -43,6 +43,7 @@ $ctrl =  'home';
 if(!empty($url[0]))
 	$ctrl = $url[0];
 $method=$url[1]?:'index';
+$method=str_replace('?'.$_SERVER['QUERY_STRING'], '', $method);
 array_shift($url);
 array_shift($url);
 $args = $url;
