@@ -191,7 +191,7 @@ you can include a template inside another template
     
     <html>
     <head>
-    <title>Tonic</title>
+    <title>Hi</title>
     </head>
     <body>
     <section tn-block="header">
@@ -202,7 +202,7 @@ you can include a template inside another template
             <p>This is the default content.</p>
         </div>
     </section>
-    <section tn-block="footer">Tonic 2016</section>
+    <section tn-block="footer">Goog bye</section>
     </body>
     ```
      inner.html:        
@@ -221,7 +221,7 @@ you can include a template inside another template
     ```html
     <html>
     <head>
-    <title>Tonic</title>
+    <title>Hi</title>
     </head>
     <body>
     <section class="myheader">
@@ -232,7 +232,7 @@ you can include a template inside another template
             <p>This is the content of my inner view.
         </div>
     </section>
-    <section>Tonic 2016</section>
+    <section>Goog bye</section>
     </body>
     ```
   
