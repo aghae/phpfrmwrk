@@ -9,9 +9,9 @@ define('CTRL_PATH'		,__DIR__.'/app/ctrl');
 define('MODEL_PATH'		,__DIR__.'/app/model');
 define('VIEW_PATH'		,__DIR__.'/app/view');
 define('CACHE_PATH'		,__DIR__.'/tmp/cache');
-// define('STATIC_PATH'	,__DIR__.'/public/static');
 define('INC_PATH'		,__DIR__.'/inc');
 
+//encryption securities
 define('CRYPT_KEY'	, '3Qr$@lTk!!');
 define('CRYPT_IV'	, '!5ssmKghQii');
 

@@ -86,10 +86,11 @@ class test_controller {
    	function sess(){
    		// sess::unset('counter');
    		// session_start();
-   		echo 'sessio id is : '.sess::id().'<br>';
-   		$counter = sess::get('counter');
-   		sess::set('counter',++$counter);
-   		echo '<br>'.$counter;
+   		echo \my\ns\sess::id();
+   		// echo 'sessio id is : '.sess::id().'<br>';
+   		// $counter = sess::get('counter');
+   		// sess::set('counter',++$counter);
+   		// echo '<br>'.$counter;
    	}
 
 
