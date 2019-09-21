@@ -29,9 +29,9 @@ database.php                //database config
 
 
 ### Models :
-- model filename trails with _model
+- model filename ends with _model
 - model classname must be same as filename
-- models can called statically anywhere 
+- models can be called statically anywhere 
      ```php
     app/model/user_model.php :
     class user_model {
@@ -52,7 +52,7 @@ database.php                //database config
     
     ```
 ### Controllers :
-- Filename trails with _controller
+- Filename ends with _controller
 - Classname must be same as filename
 - It can be call statically a controller method into another contoller 
     ```php
