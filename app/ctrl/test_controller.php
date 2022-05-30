@@ -1,5 +1,6 @@
 <?php
 
+
 class test_controller {
 
 	
@@ -17,7 +18,7 @@ class test_controller {
 
    	function override($v='sdsd'){
 
-		echo 'i override /home/overrided route ;)';
+		echo 'testController : i override /home/overrided route ;)';
 	}
 	
 
@@ -25,27 +26,89 @@ class test_controller {
    		echo 'Congradulation, You showed me ;)';
    	}
 
-   	function paramtest($par1,$par2){
+	function nosql($action=''){  //using sleekdb
 
+		$user = nosql::getstore('user');
+		$news = nosql::getstore('news');
+		// print_r($news->count());
+		// return;insert
+		switch($action){
+
+			case 'adduser':
+				// $user->deleteBy(["name",'=',"amir"]);
+				$result = $user->updateOrInsert(["name"=>"admin","pass"=>"qweasd"]);
+				break;
+
+			case 'insert':
+				
+				$article = [
+					"title" => "title ...",
+					"about" => "about me",
+					"author" => [
+					  "avatar" => "mypic.jpg",
+					  "name" => "aghae"
+					],
+					"user"=> 2
+				   ];
+				$result = $news->insert($article);
+				break;
+
+			default:
+				$q=$news->createQueryBuilder();
+				$result = $q
+							// ->select(["user","title"])
+							->orderBy(["_id"=>"desc"])
+							->disableCache()  //0 means infinits
+							// ->where([
+							// 			['user','=',1],
+							// 			'OR',
+							// 			['user','=',2],
+							// 		])
+							->join(function($article) use($user){
+								return  $article['user']?$user->findById($article['user']):[];
+							 },'creator')
+							 ->limit(10)
+							// ->having(["user","=",2])
+							// ->groupBy(["user"],"total",true)
+							->getQuery()
+							->fetch();
+				
+		}
+		header('Content-Type: application/json; charset=utf-8');
+		print_r(Json_encode($result));
+
+	
+	}
+
+	   
+
+   	function paramtest($par1,$par2){
 		res::write('par1: %s , par2: %s',[$par1,$par2]);
 	}
 
-	function model($par1,$par2){
-
-		user_model::exists();
+	function model($user_id=1){
+		user_model::exists($user_id);
 	}
 
 
    	function http(){
-
-   		echo http::curl('http://google.com');
-   		
+		echo  http::get('http://google.com');
+   		//res::write($content);
    	}
    
+	function pay(){
+		 \saman\pay::request(120000,'');
+	}
+
    	function mail(){
-   		$status=send::email('info@test.com','salam','hello <b>World<b>');
-   		if($status)
-   			res::write('succesfully sent.');
+		try{
+			$status=send::email('a.aghaee@gmail.com','salam','hello <b>World<b>');
+			echo $status;
+			if($status)
+				res::write('succesfully sent.');
+		}catch(Exception $e){
+			res::write($e.getMessage());
+		}
    	}
 
    	
@@ -57,12 +120,12 @@ class test_controller {
    		res::write('crypted is %s <br>decrypted is %s',	[$crytpted,$decrtpted]);
    	}
 
-   	function format($num){
+   	function format(){
    		// echo sprintf('sdsdsd ');s
    		res::write('hello world. i am born on %s ',[1977]);
    	}
 
-   	function pagin($num){
+   	function pagin($num=1,$show=''){  //show:  '' o json
 
    		$totalItems   = 1000;
 		$itemsPerPage = 50;
@@ -71,26 +134,29 @@ class test_controller {
 
 		$paginator = pagin::make($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 		$paginator->setMaxPagesToShow(5);
-		res::json( $paginator->getPages());
-
-		echo '
-			<style>
-				.pagination{padding:20;margin:20}
-				.pagination li {width:35px;display:inline-block}
-			</style>
-		';
-		echo  $paginator->toHtml();
+		
+		if($show=='json')
+			res::json( $paginator->getPages());
+		else{	
+			echo '
+				<style>
+					.pagination{padding:2em;margin:20}
+					.pagination li {width:35px;display:inline-block;padding-left:3em;}
+				</style>
+			';
+			echo  $paginator->toHtml();
+		}
 
    	}
 
    	function sess(){
    		// sess::unset('counter');
    		// session_start();
-   		echo \my\ns\sess::id();
+   		//echo \my\ns\sess::id();
    		// echo 'sessio id is : '.sess::id().'<br>';
-   		// $counter = sess::get('counter');
-   		// sess::set('counter',++$counter);
-   		// echo '<br>'.$counter;
+   		 $counter = sess::get('counter');
+   		 sess::set('counter',++$counter);
+   		 echo $counter;
    	}
 
 
@@ -107,18 +173,20 @@ class test_controller {
    	
 	function db(){
 
-		// if (cache::not_buffered('cachekey',60)){
-			$result = db::get(read_db)->select("name from tbl limit 10");
-			res::dump($result);
+		 if (cache::not_buffered('cachekey',60)){
+			$result = db::get(read_db)->select("name from user limit 10");
+			// res::dump($result);
+			header('Content-Type: application/json; charset=utf-8');
+			print_r(json_encode($result));
 
 			// cache::buffer('cachekey');
-		// }
+		 }
 
-		echo( "not in cache\nthis string not cached");
+		//echo( "not in cache\nthis string not cached");
 
 		// if (cache::not_buffered('2nd_cache',360)){
-			$result = db::get(read_db)->select("name from tbl limit 10");
-			res::dump($result);
+			//$result = db::get(read_db)->select("name from tbl limit 10");
+			//res::dump($result);
 
 			// cache::buffer('2nd_cache');
 		// }
@@ -155,7 +223,7 @@ class test_controller {
 		// echo util::random_string(5).'<br>';
 		echo util::secure_random_string(6).'<br>';
 		echo util::size_format(util::directory_size('./'),2).'<br>';
-		echo util::linkify('goto http://yahoo.com via uti->linkify').'<br>';
+		echo util::linkify('goto http://yahoo.com via util->linkify').'<br>';
 		echo util::human_time_diff(time() - 7400).'<br>';
 		echo util::match_string("test/*", "test/my/test").'<br>';
 		echo util::safe_truncate('The quick brown fox jumps over the lazy dog', 24).'<br>';
@@ -179,6 +247,7 @@ class test_controller {
 
 		res::write('<br>IP is : %s',[req::ip()]);
 		res::write('<br>Form POST is : %s',[req::post()]);
+		res::write('<br>Form GET is : %s',[req::get()]);
 		res::write('<br>Raw POST is : %s',[req::raw_post()]);
 
 	}

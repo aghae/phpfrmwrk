@@ -35,11 +35,16 @@ class db extends PDO
             return self::$instances[$id];
         }
 
-        $instance = new db("$type:host=$host;port=$port;dbname=$name;", $user, $pass,
-                                    [PDO::ATTR_PERSISTENT => true,
-                                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-                                    ]
-                         );
+			if($type=='sqlite'){
+				$instance = new db("$type:$name");
+			}
+			else{
+				$instance = new db("$type:host=$host;port=$port;dbname=$name;", $user, $pass,
+											[PDO::ATTR_PERSISTENT => true,
+											 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+											]
+								 );
+			}
 
         // $instance->setAttribute();
 

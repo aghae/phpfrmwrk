@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ERROR);
+
 include __DIR__.'/../routes.php';
 include __DIR__.'/../database.php';
 include __DIR__.'/../config.php';

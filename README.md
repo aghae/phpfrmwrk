@@ -237,6 +237,9 @@ you can include a template inside another template
     ```
   
 ### Database  :
+
+#### SQL DB's
+
 you can simple access to database via db::get([defined_name in database.php])
 in the following use simple methods: select , insert, update, delete 
 ```php
@@ -260,6 +263,53 @@ in the following use simple methods: select , insert, update, delete
     ....
     //for db library methods goes to API refrences
 ```
+### Nosql Db (sleekdb)
+
+
+
+```php
+$user = nosql::getstore('user');
+$news = nosql::getstore('news');
+
+$userData = $user->updateOrInsert([
+    "name"=>"admin",
+    "pass"=>"qweasd"
+]);
+
+$articleData = [
+    "title" => "title ...",
+    "about" => "about me",
+    "author" => [
+        "avatar" => "mypic.jpg",
+        "name" => "aghae"
+    ],
+    "user"=> $userData->_id
+];
+$news->insert($articleData);
+			
+$q=$news->createQueryBuilder();
+$result = $q
+    // ->select(["user","title"])
+    ->orderBy(["_id"=>"desc"])
+    ->disableCache()  //or
+    // ->useCache(60)  // lifetime in seconds or null(regenerated on every update, delete and insert)
+    // ->where([
+    // 			['user','=',1],
+    // 			'OR',
+    // 			['user','=',2],
+    // 		])
+    ->join(function($article) use($user){
+        return  $article['user']?$user->findById($article['user']):[];
+        },'creator')
+    ->limit(10)
+    // ->having(["user","=",2])
+    // ->groupBy(["user"],"total",true)
+    ->getQuery()
+    ->fetch();
+				
+```
+For documentation goto  [sleekdb documents](https://sleekdb.github.io/)
+
 
 ### CLI  :
 As well as calling an applications Controllers via the URL in a browser they can also be loaded via the command-line interface (CLI).

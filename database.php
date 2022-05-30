@@ -1,4 +1,15 @@
 <?php
+//NoSQL Database
+require_once "inc/lib/sleekdb/Store.php";
+
+
+// SQL Database
+define('sqlite',[
+		
+	'type'=>'sqlite',
+	'name'=>__DIR__.'/data/app.sqlite3'
+	
+]);
 
 define('mysql',[
 	'host'=>'localhost',
@@ -20,7 +31,8 @@ define('pgsql',[
 	'char'=>'utf8'
 ]);
 
-define('default_db'	,mysql);
-define('read_db'	,mysql);
-define('write_db'	,mysql);
+
+define('default_db'	,sqlite);
+define('read_db'	,sqlite);
+define('write_db'	,sqlite);
 

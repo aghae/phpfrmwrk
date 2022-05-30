@@ -10,6 +10,9 @@ define('MODEL_PATH'		,__DIR__.'/app/model');
 define('VIEW_PATH'		,__DIR__.'/app/view');
 define('CACHE_PATH'		,__DIR__.'/tmp/cache');
 define('INC_PATH'		,__DIR__.'/inc');
+define('NOSQL_PATH'		,__DIR__.'/data');
+
+
 
 //encryption securities
 define('CRYPT_KEY'	, '3Qr$@lTk!!');
@@ -23,7 +26,7 @@ define('SESSION_HANDLER','files'); 	# files or memcached or redis
 	if SESSION_HANDLER is memcached 	set SESSION_SAVE host:port like this :  localhost:11211 
 	if SESSION_HANDLER is redis 		set SESSION_SAVE host:port like this :  tcp://127.0.0.1:6379  
 	hint :
-		for working redis & memcache  php-redis & php-memcached must be installed 
+		for working redis & memcached  php-redis & php-memcached must be installed 
 */
 
 define('SESSION_SAVE'	, __DIR__.'/tmp/session');  
@@ -41,8 +44,8 @@ define('COOKIE_HTTPONLY',false);
 
 #email
 define('SMTP_HOST'		,'smtp.gmail.com');
-define('SMTP_USER'		,'your@gmail.com');
-define('SMTP_PASS'		,'secretPasss');
+define('SMTP_USER'		,'youremail@emaildomain');
+define('SMTP_PASS'		,'youremailpasword');
 define('SMTP_PORT'		, 587);
 define('SMTP_SECURE'	,'tls'); #tls or ssl
 define('MAIL_FROM'		,'info@my.co');
