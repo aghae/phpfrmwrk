@@ -150,8 +150,10 @@ Modifiers are functions that modify the output variable in various ways. All mod
             
 - __Include :__ 
 you can include a template inside another template
-    >{include footer.html}   or
-     {include http://mypage.com/static.html} ```fetch external page```
+    > {include footer.html}  
+    > ```fetch external page```: 
+    <br>{include http://mypage.com/static.html} 
+     
              
 - __If / else :__
     ```HTML
@@ -263,7 +265,7 @@ in the following use simple methods: select , insert, update, delete
     ....
     //for db library methods goes to API refrences
 ```
-### Nosql Db (sleekdb)
+### NoSQL DB (sleekdb)
 
 
 
@@ -294,10 +296,10 @@ $result = $q
     ->disableCache()  //or
     // ->useCache(60)  // lifetime in seconds or null(regenerated on every update, delete and insert)
     // ->where([
-    // 			['user','=',1],
-    // 			'OR',
-    // 			['user','=',2],
-    // 		])
+    // 	 ['user','=',1],
+    // 	 'OR',
+    // 	 ['user','=',2],
+    // 	])
     ->join(function($article) use($user){
         return  $article['user']?$user->findById($article['user']):[];
         },'creator')
